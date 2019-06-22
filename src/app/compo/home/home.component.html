@@ -1,0 +1,146 @@
+<div class="container">
+    <img class="rounded mx-auto d-block" src="https://www.daganm.co.il/common/assets/648/625/968_5a533cf0cb324.png"  alt="">
+</div>
+<div class="container">
+  <div class="row mt-2">
+    <div class="col"></div>
+    <div class="col-md-12 col-sm-8">
+        <div class="">
+          <div class="careerCard">
+            <h2 class="text-right">:עלינו</h2>
+            <p class="text-right">{{aboutUs}}</p>
+          </div>
+        </div>
+    </div>
+    <div class="col"></div>
+  </div>
+
+  <div class="row">
+      <div class="col"></div>
+      <div class="col-md-12 col-sm-8">
+          <div class="">
+              <div class="careerCard">
+                <h2 class="text-right">:דרישות התפקיד</h2>
+                <p class="text-right">{{someInfo}}</p>
+                <ul>
+                  <li class="text-right">ידע וניסיון בתחום המולטימדיה והתקשורת חובה (יתרון ליוצאי חברות מחשבים, התקנות תקשורת, התקנות IT ,מולטימדיה)</li>
+                  <li class="text-right">ניסיון עבודה מול המגזר העסקי</li>
+                  <li class="text-right">יצירת קשר עם לקוחות חדשים</li>
+                  <li class="text-right">רמת יחס בין אישית גבוה</li>
+                  <li class="text-right">כושר שכנוע ומוטיבציה גבוהה</li>
+                  <li class="text-right">אנגלית ברמה בסיסית-חובה המשרה מיועדת לנשים וגברים כאחד</li>
+                </ul>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13529.54399197507!2d34.7954017!3d32.0317419!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x767ae0bf17c32534!2z15PXktefINee15XXnNeY15nXnteT15nXlCDXkdeiItee!5e0!3m2!1siw!2sil!4v1560449173866!5m2!1siw!2sil" width="100%" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+                <hr class="styleHr">
+                <form novalidate
+                (ngSubmit)="save()"
+                [formGroup]="employeeForm">
+                <div class="form-group row mt-3">
+                    <label class="col-md-2 col-form-label"
+                           for="firstNameId">שם פרטי</label>
+                    <div class="col-md-10">
+                      <input class="form-control"
+                             id="firstNameId"
+                             type="text"
+                             placeholder="שם פרטי"
+                             formControlName="firstName"
+                             [ngClass]="{'is-invalid': (employeeForm.get('firstName').touched || employeeForm.get('firstName').dirty) && !employeeForm.get('firstName').valid }" />
+                      <span class="invalid-feedback">
+                        <span *ngIf="employeeForm.get('firstName').errors?.required">
+                          בבקשה הוסף שם פרטי
+                        </span>
+                        <span *ngIf="employeeForm.get('firstName').errors?.minlength">
+                          מינימום 2 אותיות
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group row mb-2">
+                      <label class="col-md-2 col-form-label"
+                             for="lastNameId">שם משפחה</label>
+                      <div class="col-md-10">
+                        <input class="form-control"
+                               id="lastNameId"
+                               type="text"
+                               placeholder="שם משפחה"
+                               formControlName="lastName"
+                               [ngClass]="{'is-invalid': (employeeForm.get('lastName').touched || employeeForm.get('lastName').dirty) && !employeeForm.get('lastName').valid }" />
+                        <span class="invalid-feedback">
+                          <span *ngIf="employeeForm.get('lastName').errors?.required">
+                            בבקשה הוסף שם משפחה
+                          </span>
+                          <span *ngIf="employeeForm.get('lastName').errors?.maxLength">
+                            מקסימום 50 אותיות
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="form-group row mb-2">
+                        <label class="col-md-2 col-form-label"
+                              for="emailId">כתובת מייל</label>
+                        <div class="col-md-10">
+                          <input class="form-control"
+                                id="emailId"
+                                type="email"
+                                placeholder="כתובת מייל"
+                                formControlName="email"
+                                [ngClass]="{'is-invalid':emailMessage}" />
+                          <span class="invalid-feedback">
+                            {{emailMessage}}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div class="form-group row mb-2">
+                          <label class="col-md-2 col-form-label"
+                                 for="phoneId">מספר טלפון</label>
+                          <div class="col-md-10">
+                            <input class="form-control"
+                                   id="phoneId"
+                                   type="number"
+                                   placeholder="מספר טלפון"
+                                   formControlName="phone"
+                                   [ngClass]="{'is-invalid': (employeeForm.get('phone').touched || employeeForm.get('phone').dirty) && !employeeForm.get('phone').valid }" />
+                            <span class="invalid-feedback">
+                              <span *ngIf="employeeForm.get('phone').errors?.required">
+                                בבקשה הוסף מספר טלפון
+                              </span>
+                            </span>
+                          </div>
+                        </div>
+
+                        <div class="form-group row mb-2">
+                          <label class="col-md-2 col-form-label"
+                                 for="fileID">קורות חיים</label>
+                          <div class="col-md-10">
+                            <div class="custom-file">
+                              <input type="file" class="custom-file-input" id="fileID" (change)="onFileChange($event)"
+                              [ngClass]="{'is-invalid':fileMessage,'is-valid':successFile }">
+                              <label class="custom-file-label" for="fileID">{{fileMessage || successFile}}</label>
+                            </div>
+                          </div>
+                        </div>
+                        <button class="btn btn-primary btn-lg btn-block"[title]="employeeForm.valid ? 'שלח עכשיו!' : 'בבקשה למלא את כל השדות'"
+                        [disabled]="!employeeForm.valid" [hidden]="sendClicked">שלח קורות חיים</button>
+                </form>
+                <div *ngIf='sendClicked' class="d-flex justify-content-center mt-4">
+                  <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+      <div class="col"></div>
+    </div>
+</div>
+<!-- <br>Dirty: {{ employeeForm.dirty }}
+<br>Touched: {{ employeeForm.touched }}
+<br>Valid: {{ employeeForm.valid }}
+<br>Value: {{ employeeForm.value | json }} -->
+
+
+
+
